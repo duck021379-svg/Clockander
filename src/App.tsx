@@ -23,7 +23,6 @@ import { CustomizeDrawer } from './components/CustomizeDrawer';
 import { GeminiAssistantModal } from './components/GeminiAssistantModal';
 import { ConfirmationModal } from './components/ConfirmationModal';
 import { GoogleSyncBar } from './components/GoogleSyncBar';
-import { DesignReferenceModal } from './components/DesignReferenceModal';
 import { SetReminderModal } from './components/SetReminderModal';
 import { QuickCalendarShade } from './components/QuickCalendarShade';
 import { SimpleWidget } from './components/SimpleWidget';
@@ -68,7 +67,6 @@ export default function App() {
   // Modals & Drawers
   const [isCustomizerOpen, setIsCustomizerOpen] = useState(false);
   const [isGeminiOpen, setIsGeminiOpen] = useState(false);
-  const [isDesignRefOpen, setIsDesignRefOpen] = useState(false);
   const [isSetReminderOpen, setIsSetReminderOpen] = useState(false);
   const [isShadeOpen, setIsShadeOpen] = useState(false);
   const [isSyncing, setIsSyncing] = useState(false);
@@ -426,19 +424,6 @@ export default function App() {
               <span className="hidden sm:inline font-mono">Win+N</span>
             </button>
 
-            {/* Design Visual Reference & Shares Button */}
-            <button
-              onClick={() => {
-                if (settings.hapticsEnabled) soundManager.playClick();
-                setIsDesignRefOpen(true);
-              }}
-              title="Design Visuals & Gemini Shares"
-              className="p-1.5 px-2 rounded-xl bg-white/10 hover:bg-cyan-500/20 border border-cyan-400/30 text-cyan-300 flex items-center gap-1 text-xs font-semibold transition-all active:scale-95 cursor-pointer shadow-sm"
-            >
-              <ImageIcon className="w-3.5 h-3.5 text-cyan-400" />
-              <span className="hidden sm:inline">Visuals</span>
-            </button>
-
             {/* Lock / Unlock Toggle Button */}
             <button
               onClick={handleToggleLock}
@@ -648,19 +633,6 @@ export default function App() {
         onClose={() => setIsSetReminderOpen(false)}
         selectedDate={selectedDate}
         onSaveReminder={handleAddEvent}
-        haptics={settings.hapticsEnabled}
-      />
-
-      {/* Design Reference & Visual Comparison Modal */}
-      <DesignReferenceModal
-        isOpen={isDesignRefOpen}
-        onClose={() => setIsDesignRefOpen(false)}
-        referenceImage={referenceImage}
-        onSetReferenceImage={handleSetReferenceImage}
-        overlayOpacity={overlayOpacity}
-        onSetOverlayOpacity={setOverlayOpacity}
-        isOverlayActive={isOverlayActive}
-        onToggleOverlay={() => setIsOverlayActive((prev) => !prev)}
         haptics={settings.hapticsEnabled}
       />
 

@@ -4,6 +4,7 @@ import { PrecisionClockEngine } from '../utils/clock';
 import { soundManager } from '../utils/audio';
 import { Calendar, Plus, ExternalLink, X, Check, Sparkles } from 'lucide-react';
 import { WeatherWidget } from './WeatherWidget';
+import { PWAInstallButton } from './PWAInstallButton';
 
 interface SimpleWidgetProps {
   settings: WidgetSettings;
@@ -303,6 +304,13 @@ export const SimpleWidget: React.FC<SimpleWidgetProps> = ({
             <ExternalLink className="w-3 h-3" />
           </button>
         </div>
+
+        {/* Windows App Install Button */}
+        <PWAInstallButton
+          minimalText
+          textStyle={textCustomStyle}
+          haptics={settings.hapticsEnabled}
+        />
 
         {/* Gemini AI Workspace Chat Button */}
         {onOpenGemini && (
